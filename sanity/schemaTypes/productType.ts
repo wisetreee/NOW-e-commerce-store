@@ -42,27 +42,22 @@ export const productType = defineType ({
             validation: (rule) => rule.required().min(0),
         }),
         defineField({
-            name: 'gender',
-            title: 'Пол',
-            type: 'string',
-            options: {
-              list: [
-                { title: 'Для мужчин', value: 'men' },
-                { title: 'Для женщин', value: 'women' },
-              ],
-              layout: 'radio', // Показывает радиокнопки в интерфейсе
-            },
-            validation: (Rule) => Rule.required(), // Поле обязательно для заполнения
-          }),
-        defineField ({
-            name: 'availableSizes',
-            title: 'Размеры обуви',
+            name: 'genderOptions',
+            title: 'Доступные размеры по полу',
             type: 'array',
-            of: [{ type: 'object',
-                 fields: [
-                    { name: 'size', title: "Размер", type: 'number', validation: (rule) => rule.min(31).max(49), },
-                    { name: 'quantity', title: "Количество", type: 'number', validation: (rule) => rule.min(0) }] }],
-        }),
+            of: [
+              {
+                type: 'object',
+                fields: [
+                  { name: 'gender', title: 'Пол', type: 'string', options: { list: ['male', 'female'] } },
+                  { name: 'sizes', title: 'Размеры', type: 'array', of: [{ type: 'object', fields: [
+                    { name: 'size', title: 'Размер', type: 'number' },
+                    { name: 'quantity', title: 'Количество', type: 'number' }
+                  ] }] },
+                ],
+              }
+            ],
+          }),
         defineField ({
             name: "categories",
             title: "Категории товара",

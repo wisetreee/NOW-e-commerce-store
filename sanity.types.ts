@@ -68,6 +68,58 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type NewsType = {
+  _id: string;
+  _type: "newsType";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  publishedAt?: string;
+};
+
 export type OrderType = {
   _id: string;
   _type: "orderType";
@@ -145,10 +197,13 @@ export type Product = {
     _key: string;
   }>;
   price?: number;
-  gender?: "men" | "women";
-  availableSizes?: Array<{
-    size?: number;
-    quantity?: number;
+  genderOptions?: Array<{
+    gender?: "male" | "female";
+    sizes?: Array<{
+      size?: number;
+      quantity?: number;
+      _key: string;
+    }>;
     _key: string;
   }>;
   categories?: Array<{
@@ -265,7 +320,7 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | OrderType | Product | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | NewsType | OrderType | Product | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/products/getAllProducts.ts
 // Variable: ALL_PRODUCTS_QUERY
@@ -320,10 +375,84 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
     _key: string;
   }>;
   price?: number;
-  gender?: "men" | "women";
-  availableSizes?: Array<{
-    size?: number;
-    quantity?: number;
+  genderOptions?: Array<{
+    gender?: "female" | "male";
+    sizes?: Array<{
+      size?: number;
+      quantity?: number;
+      _key: string;
+    }>;
+    _key: string;
+  }>;
+  categories?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }>;
+}>;
+
+// Source: ./sanity/lib/products/getNewProducts.ts
+// Variable: NEW_PRODUCTS_QUERY
+// Query: *[        _type == "product"        ] | order(_createdAt desc) [0..10]
+export type NEW_PRODUCTS_QUERYResult = Array<{
+  _id: string;
+  _type: "product";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  price?: number;
+  genderOptions?: Array<{
+    gender?: "female" | "male";
+    sizes?: Array<{
+      size?: number;
+      quantity?: number;
+      _key: string;
+    }>;
     _key: string;
   }>;
   categories?: Array<{
@@ -340,5 +469,6 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n        *[\n        _type == \"product\"\n        ] | order(name asc)     \n        ": ALL_PRODUCTS_QUERYResult;
+    "\n        *[\n        _type == \"product\"\n        ] | order(_createdAt desc) [0..10]     \n        ": NEW_PRODUCTS_QUERYResult;
   }
 }

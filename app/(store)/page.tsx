@@ -1,14 +1,14 @@
-import { getAllProducts } from "@/sanity/lib/products/getAllProducts";
+import { getNewProducts } from "@/sanity/lib/products/getNewProducts";
 import ProductCard from "../components/ProductCard";
 
 export default async function Home() {
-  const products = await getAllProducts();
+  const products = await getNewProducts();
   
   return (
     <div>
      <h1>Hello world!</h1>
      {products.map ((product, index) => (
-      <div><ProductCard product = {product}/></div>
+      <ProductCard key = {product._id} product = {product}/>
      ))}
     </div>
   );
