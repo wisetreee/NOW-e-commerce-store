@@ -9,7 +9,7 @@ const Header = () => {
   const user = useUser();
   console.log(user);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+  // const [searchOpen, setSearchOpen] = useState(false);
   const navLinks = [
     {
       name: "Мужчинам",
