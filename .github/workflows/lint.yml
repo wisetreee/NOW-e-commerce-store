@@ -15,4 +15,4 @@ jobs:
           node-version: 20.14
 
       - name: Run ESLint
-        run: npn run lint
+        run: npm run lint
