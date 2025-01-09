@@ -154,6 +154,7 @@ export type Product = {
   _updatedAt: string;
   _rev: string;
   name?: string;
+  type?: string;
   slug?: Slug;
   image?: {
     asset?: {
@@ -166,6 +167,18 @@ export type Product = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  gallery?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -197,13 +210,10 @@ export type Product = {
     _key: string;
   }>;
   price?: number;
-  genderOptions?: Array<{
-    gender?: "male" | "female";
-    sizes?: Array<{
-      size?: number;
-      quantity?: number;
-      _key: string;
-    }>;
+  gender?: "male" | "female";
+  sizes?: Array<{
+    size?: number;
+    quantity?: number;
     _key: string;
   }>;
   categories?: Array<{
@@ -332,6 +342,7 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
   _updatedAt: string;
   _rev: string;
   name?: string;
+  type?: string;
   slug?: Slug;
   image?: {
     asset?: {
@@ -344,6 +355,18 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
     crop?: SanityImageCrop;
     _type: "image";
   };
+  gallery?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -375,13 +398,10 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
     _key: string;
   }>;
   price?: number;
-  genderOptions?: Array<{
-    gender?: "female" | "male";
-    sizes?: Array<{
-      size?: number;
-      quantity?: number;
-      _key: string;
-    }>;
+  gender?: "female" | "male";
+  sizes?: Array<{
+    size?: number;
+    quantity?: number;
     _key: string;
   }>;
   categories?: Array<{
@@ -403,6 +423,7 @@ export type NEW_PRODUCTS_QUERYResult = Array<{
   _updatedAt: string;
   _rev: string;
   name?: string;
+  type?: string;
   slug?: Slug;
   image?: {
     asset?: {
@@ -415,6 +436,18 @@ export type NEW_PRODUCTS_QUERYResult = Array<{
     crop?: SanityImageCrop;
     _type: "image";
   };
+  gallery?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -446,13 +479,10 @@ export type NEW_PRODUCTS_QUERYResult = Array<{
     _key: string;
   }>;
   price?: number;
-  genderOptions?: Array<{
-    gender?: "female" | "male";
-    sizes?: Array<{
-      size?: number;
-      quantity?: number;
-      _key: string;
-    }>;
+  gender?: "female" | "male";
+  sizes?: Array<{
+    size?: number;
+    quantity?: number;
     _key: string;
   }>;
   categories?: Array<{

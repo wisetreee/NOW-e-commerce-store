@@ -1,3 +1,9 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    // Настройте свои правила
+    "react/prop-types": "off", // Отключить проверку prop-types, если вы используете TypeScript
+    "semi": ["error", "always"], // Требовать точки с запятой
+    "quotes": ["error", "double"] // Требовать двойные кавычки
+  }
 }

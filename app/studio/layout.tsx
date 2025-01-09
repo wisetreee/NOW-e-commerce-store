@@ -1,7 +1,7 @@
 export const metadata = {
     title: "Next.js",
     description: "Описание"
-}
+};
 
 export default function RootLayout({
     children,

@@ -1,15 +1,16 @@
 import { getNewProducts } from "@/sanity/lib/products/getNewProducts";
-import ProductCard from "../components/ProductCard";
+import ProductRow from "../components/ProductRow";
 
 export default async function Home() {
   const products = await getNewProducts();
   
   return (
-    <div>
-     <h1>Hello world!</h1>
-     {products.map ((product, index) => (
-      <ProductCard key = {product._id} product = {product}/>
-     ))}
-    </div>
+    <section>
+      <div className="container mx-auto px-8 md:px-8 lg:px-16 justify-between items-center">
+     <h1 className="mb-4">Новинки</h1>
+     <ProductRow products={products}/>
+     </div>
+    </section>
+
   );
 }

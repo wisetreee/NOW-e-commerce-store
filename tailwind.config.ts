@@ -7,22 +7,21 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    maxWidth: {
-      '7xl': '95rem',
-      // Add more custom values as needed
-    },
     extend: {
       colors: {
-        main_white: "#FFFFFF",
-        content_black: "#1C1D24",
-        content_light_gray: "#F2F2F2",
-        content_gray: "#AEAEAE",
-        content_dark_gray: "#8E8E8E",
-        accent_orange: "#FFBB4D",
-        accent_red: "#A72020",
-        accent_green: "#1F6E12",
+        main_1: "var(--main_1)",
+        content_1: "var(--content_1)",
+        content_2: "var(--content_2)",
+        content_3: "var(--content_3)",
+        content_4: "var(--content_4)",
+        accent_1: "var(--accent_1)",
+        accent_red: "var(--accent_red)",
+        accent_green: "var(--accent_green)",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
 } satisfies Config;

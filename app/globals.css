@@ -5,6 +5,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --main_1: #FFFFFF;
+  --content_1: #1C1D24;
+  --content_2: #F2F2F2;
+  --content_3: #AEAEAE;
+  --content_4: #8E8E8E;
+  --accent_1: #FFBB4D;
+  --accent_red: #A72020;
+  --accent_green: #1F6E12;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,8 +23,17 @@
   }
 }
 
+body h1 {
+  font-family: var(--font-uncage);
+  font-size: 2rem;
+  font-weight: 400;
+  
+}
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-vela-sans);
+  font-weight: 400;
 }
+
+

@@ -6,15 +6,22 @@ import { SanityLive } from "@/sanity/lib/live";
 import Header from "../components/Header";
 
 const velaSans = localFont({
-  src: "../fonts/VelaSans-GX.ttf",
-  variable: "--font-geist-sans",
-  weight: "100 200 300 400 500 900",
+  src: [
+    { path: "../fonts/VelaSans-Regular.ttf", weight: "400", style: "regular" },
+    { path: "../fonts/VelaSans-Medium.ttf", weight: "500", style: "medium" },
+    { path: "../fonts/VelaSans-Semibold.ttf", weight: "600", style: "semibold" },
+  ],
+  variable: "--font-vela-sans",
 });
-const geistMono = localFont({
-  src: "../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const uncage = localFont({
+  src: [
+    { path: "../fonts/UNCAGE-Regular.ttf", weight: "400", style: "regular" },
+    { path: "../fonts/UNCAGE-Medium.ttf", weight: "500", style: "medium" },
+  ],
+  variable: "--font-uncage",
 });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,9 +37,10 @@ export default function RootLayout({
     <ClerkProvider dynamic>
     <html lang="en">
       <body
-        className={`${velaSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className={`${velaSans.variable} ${uncage.variable}  antialiased`}
+      >    
         <Header/>
+
         <main>
         {children}
         </main>
