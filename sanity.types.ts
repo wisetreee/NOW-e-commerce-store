@@ -233,6 +233,17 @@ export type Category = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
   description?: string;
 };
 
@@ -240,6 +251,28 @@ export type Slug = {
   _type: "slug";
   current?: string;
   source?: string;
+};
+
+export type Hero = {
+  _id: string;
+  _type: "hero";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  buttonText?: string;
 };
 
 export type BlockContent = Array<{
@@ -330,8 +363,38 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | NewsType | OrderType | Product | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | NewsType | OrderType | Product | Category | Slug | Hero | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/categories/getPopularCategories.ts
+// Variable: CATEGORIES_QUERY
+// Query: *[ _type == "categories" ][0..3]
+export type CATEGORIES_QUERYResult = Array<never>;
+
+// Source: ./sanity/lib/hero/getHero.ts
+// Variable: HERO_QUERY
+// Query: *[ _type == "hero" ][0]
+export type HERO_QUERYResult = {
+  _id: string;
+  _type: "hero";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  buttonText?: string;
+} | null;
+
 // Source: ./sanity/lib/products/getAllProducts.ts
 // Variable: ALL_PRODUCTS_QUERY
 // Query: *[        _type == "product"        ] | order(name asc)
@@ -498,6 +561,8 @@ export type NEW_PRODUCTS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "*[ _type == \"categories\" ][0..3] ": CATEGORIES_QUERYResult;
+    "*[ _type == \"hero\" ][0]": HERO_QUERYResult;
     "\n        *[\n        _type == \"product\"\n        ] | order(name asc)     \n        ": ALL_PRODUCTS_QUERYResult;
     "\n        *[\n        _type == \"product\"\n        ] | order(_createdAt desc) [0..10]     \n        ": NEW_PRODUCTS_QUERYResult;
   }

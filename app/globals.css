@@ -23,6 +23,13 @@
   }
 }
 
+/* mx-auto px-8 md:px-8 lg:px-16 justify-between items-center */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
 body h1 {
   font-family: var(--font-uncage);
   font-size: 2rem;
@@ -36,4 +43,10 @@ body {
   font-weight: 400;
 }
 
+@media (width >= 1024px) {
+  .container {
+  padding-left: 4rem;
+  padding-right: 4rem;
+  }
+}
 

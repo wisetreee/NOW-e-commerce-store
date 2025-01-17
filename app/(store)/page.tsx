@@ -1,16 +1,17 @@
-import { getNewProducts } from "@/sanity/lib/products/getNewProducts";
-import ProductRow from "../components/ProductRow";
+import AboutSection from "../components/AboutSection";
+import HeroSection from "../components/HeroSection";
+import NewProductsSection from "../components/NewProductsSection";
+import PopularCategoriesSection from "../components/PopularCategoriesSection";
 
-export default async function Home() {
-  const products = await getNewProducts();
-  
+export default function Home() {
+
   return (
-    <section>
-      <div className="container mx-auto px-8 md:px-8 lg:px-16 justify-between items-center">
-     <h1 className="mb-4">Новинки</h1>
-     <ProductRow products={products}/>
-     </div>
-    </section>
+    <main>
+      <HeroSection/> 
+      <NewProductsSection/>  
+      <PopularCategoriesSection/>
+      <AboutSection/>
+    </main>
 
   );
 }

@@ -30,7 +30,7 @@ const Header = () => {
   ];
   return (
     <header className="bg-content_1 py-4 ">
-      <div className="container mx-auto flex px-6 items-center justify-between text-sm lg:px-16 lg:text-base">
+      <div className="container flex items-center justify-between text-sm lg:text-base">
               <div className='button-container w-1/3 flex items-center justify-start lg:w-auto lg:hidden'>
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
@@ -69,7 +69,7 @@ const Header = () => {
                      menuOpen ? "left-0" : "-left-full"
                     }`}
                   >
-                 <div className="container mx-auto px-6 pt-4">
+                 <div className="container px-6 pt-4">
                     <div className='upper-panel flex justify-between mb-12'>
                       <Logo/>
                       <button 

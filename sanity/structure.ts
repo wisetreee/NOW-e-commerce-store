@@ -5,9 +5,16 @@ export const structure: StructureResolver = (S) =>
   S.list()
     .title('Магазин')
     .items([
-      S.documentTypeListItem('category').title('Категории товаров'),
+      S.documentTypeListItem('hero')
+        .title('Шапка сайта')
+        .child(
+          S.document()
+            .schemaType('hero')
+            .documentId('hero')),
+            
       S.divider(),
+      
       ...S.documentTypeListItems().filter(
-        (item) => item.getId() && !['post', 'category', 'author'].includes(item.getId()!),
+        (item) => item.getId() && ![ 'hero' ].includes(item.getId()!),
       ),
     ])

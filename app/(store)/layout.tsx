@@ -4,6 +4,7 @@ import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { SanityLive } from "@/sanity/lib/live";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const velaSans = localFont({
   src: [
@@ -40,10 +41,8 @@ export default function RootLayout({
         className={`${velaSans.variable} ${uncage.variable}  antialiased`}
       >    
         <Header/>
-
-        <main>
         {children}
-        </main>
+        <Footer/>
         
         <SanityLive />
       </body>

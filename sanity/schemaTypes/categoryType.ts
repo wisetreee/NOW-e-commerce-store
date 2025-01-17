@@ -20,6 +20,15 @@ export const categoryType = defineType({
         source: 'title',
       },
     }),
+    defineField ({
+      name: "image",
+      title: "Изображение",
+      type: "image",
+      options: {
+          hotspot: true,
+      }
+  }),
+
     defineField({
       name: 'description',
       title: 'Описание',

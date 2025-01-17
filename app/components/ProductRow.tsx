@@ -10,12 +10,7 @@ interface ProductRowProps {
         {/* Контейнер карточек */}
         <div className="flex gap-4">
           {products.map((product) => (
-            <div
-              key={product._id}
-              className="flex-shrink-0 w-1/2  md:w-1/5 max-w-[14.5rem]"
-            >
-              <ProductCard product={product} />
-            </div>
+              <ProductCard product={product} key={product._id}/>           
           ))}
         </div>
       </div>
