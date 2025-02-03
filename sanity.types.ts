@@ -231,7 +231,7 @@ export type Category = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
+  name?: string;
   slug?: Slug;
   image?: {
     asset?: {
@@ -367,8 +367,28 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/categories/getPopularCategories.ts
 // Variable: CATEGORIES_QUERY
-// Query: *[ _type == "categories" ][0..3]
-export type CATEGORIES_QUERYResult = Array<never>;
+// Query: *[ _type == "category" ][0..3]
+export type CATEGORIES_QUERYResult = Array<{
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  description?: string;
+}>;
 
 // Source: ./sanity/lib/hero/getHero.ts
 // Variable: HERO_QUERY
@@ -476,6 +496,18 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
   }>;
 }>;
 
+// Source: ./sanity/lib/products/getFilteredProducts.ts
+// Variable: FILTERED_PRODUCTS_QUERY
+// Query: *[      _type == "product" &&      (name match $query || description[].children[].text match $query || $query == "") &&      ($gender == "" || gender == $gender) &&      ($sizes == null || defined(*[_type == "product" && _id == ^._id && count(sizes[size in $sizes]) > 0][0])) &&      ($categories == null || count($categories) == 0 || *[_type=="category" && slug.current in $categories]._id  match categories[]._ref) &&      price >= $minPrice &&      price <= $maxPrice    ]    | order(name asc)    {      _id,      name,      type,      price,      slug,      "image": image.asset->url,    }
+export type FILTERED_PRODUCTS_QUERYResult = Array<{
+  _id: string;
+  name: string | null;
+  type: string | null;
+  price: number | null;
+  slug: Slug | null;
+  image: string | null;
+}>;
+
 // Source: ./sanity/lib/products/getNewProducts.ts
 // Variable: NEW_PRODUCTS_QUERY
 // Query: *[        _type == "product"        ] | order(_createdAt desc) [0..10]
@@ -561,9 +593,10 @@ export type NEW_PRODUCTS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[ _type == \"categories\" ][0..3] ": CATEGORIES_QUERYResult;
+    "*[ _type == \"category\" ][0..3] ": CATEGORIES_QUERYResult;
     "*[ _type == \"hero\" ][0]": HERO_QUERYResult;
     "\n        *[\n        _type == \"product\"\n        ] | order(name asc)     \n        ": ALL_PRODUCTS_QUERYResult;
+    "\n    *[\n      _type == \"product\" &&\n      (name match $query || description[].children[].text match $query || $query == \"\") &&\n      ($gender == \"\" || gender == $gender) &&\n      ($sizes == null || defined(*[_type == \"product\" && _id == ^._id && count(sizes[size in $sizes]) > 0][0])) &&\n      ($categories == null || count($categories) == 0 || *[_type==\"category\" && slug.current in $categories]._id  match categories[]._ref) &&\n      price >= $minPrice &&\n      price <= $maxPrice\n    ]\n    | order(name asc)\n    {\n      _id,\n      name,\n      type,\n      price,\n      slug,\n      \"image\": image.asset->url,\n    }\n  ": FILTERED_PRODUCTS_QUERYResult;
     "\n        *[\n        _type == \"product\"\n        ] | order(_createdAt desc) [0..10]     \n        ": NEW_PRODUCTS_QUERYResult;
   }
 }

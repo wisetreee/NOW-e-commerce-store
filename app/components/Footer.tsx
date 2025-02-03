@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer className='w-full h-[17rem] bg-content_1 pt-8'>
+    <footer className='w-full h-[17rem] bg-content_1 pt-8 mt-auto'>
         <div className="container">
             <Logo/>
             <div className="flex gap-4 mt-4">

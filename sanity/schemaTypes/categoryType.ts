@@ -8,7 +8,7 @@ export const categoryType = defineType({
   icon: TagIcon,
   fields: [
     defineField({
-      name: 'title',
+      name: 'name',
       title: 'Название',
       type: 'string',
     }),
@@ -38,8 +38,9 @@ export const categoryType = defineType({
   ],
   preview: {
     select: {
-        title: "title",
+        title: "name",
         description: "description",
+        media: "image",
     },
   },
 })

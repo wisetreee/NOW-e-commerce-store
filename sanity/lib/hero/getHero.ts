@@ -9,9 +9,9 @@ export const getHero = async() => {
             const hero = await sanityFetch({
                 query: HERO_QUERY,
             });
-            return hero.data || undefined;
+            return hero.data || null;
             } catch (error) {
                 console.error ('Ошибка при запросе данных для шапки сайта:', error);
-                return [];
+                return null;
             }
 };

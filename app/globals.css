@@ -37,8 +37,7 @@ body h1 {
   
 }
 body {
-  color: var(--foreground);
-  background: var(--background);
+
   font-family: var(--font-vela-sans);
   font-weight: 400;
 }
@@ -49,4 +48,3 @@ body {
   padding-right: 4rem;
   }
 }
-

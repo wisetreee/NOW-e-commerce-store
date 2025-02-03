@@ -10,13 +10,14 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <Link href={`/product/${product.slug?.current}`} className="flex-shrink-0 w-1/2 md:w-1/5 max-w-[14.5rem]">
+    <Link href={`/catalog/${product.slug?.current}`} className=" w-full ">
         <div className="relative w-full aspect-w-1 aspect-h-1 bg-white brightness-95 mb-2 hover:brightness-90 duration-300 ease-in-out">
           {product.image && (
             <Image
               alt="Logo"
               src={imageUrl(product.image).url()}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-scale-down"
             />
           )}
