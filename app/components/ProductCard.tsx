@@ -10,7 +10,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <Link href={`/catalog/${product.slug?.current}`} className=" w-full ">
+    <Link href={`/catalog/product/${product.slug?.current}`} className=" w-full ">
         <div className="relative w-full aspect-w-1 aspect-h-1 bg-white brightness-95 mb-2 hover:brightness-90 duration-300 ease-in-out">
           {product.image && (
             <Image
@@ -24,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
         <h2 className="font-semibold text-content_1">{product.name}</h2>
         <h3 className="font-regular text-sm text-content_3">{product.type}</h3>
-        <h3 className="font-semibold  text-sm text-content_1">{product.price} ₽</h3>
+        <h3 className="font-semibold text-sm text-content_1">{product.price} ₽</h3>
     </Link>
   );
 };

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "./Button";
 import IconButton from "./IconButton";
+import SizeGrid from "./SizesGrid";
 
 interface FilterPanelProps {
   panelOpen: boolean;
@@ -16,14 +17,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ panelOpen, setPanelOpen}) => 
   const [gender, setGender] = useState<string | null>(null);
   const [sizes, setSizes] = useState<number[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0]); // Диапазон цены
-
-  const handleSizeClick = (num: number) => {
-    if (sizes.includes(num)) {
-      setSizes(sizes.filter((size) => size !== num)); // Удаляем размер, если он уже выбран
-    } else {
-      setSizes([...sizes, num]); // Добавляем размер, если он не выбран
-    }
-  };
+  
   const applyFilters = () => {
     const query: Record<string, string> = {};
   
@@ -95,21 +89,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ panelOpen, setPanelOpen}) => 
       {/* Размер */}
       <div className="p-4 border-b">
         <h3 className=" font-medium mb-2">Размер</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-          {[31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45].map(
-            (num) => (
-              <button
-                key={num}
-                className={`w-full aspect-square p-2 border transition-all duration-300  ${
-                  sizes.includes(num) ?  "bg-content_2" : "bg-main_1"
-                }`}
-                onClick={() => handleSizeClick(num)}
-              >
-                {num}
-              </button>
-            )
-          )}
-        </div>
+        <SizeGrid selectedSizes={sizes} onSizeChange={setSizes} mode="multiple" />
       </div>
 
       {/* Цена */}
@@ -142,12 +122,6 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ panelOpen, setPanelOpen}) => 
       {/* Кнопка применить */}
       <div className="p-4">
         <Button text="Применить" width="100%" onClick={applyFilters}></Button>
-        {/* <button
-          onClick={applyFilters}
-          className="w-full bg-blue-500 text-white py-2 "
-        >
-          Применить
-        </button> */}
       </div>
     </div>
   );
