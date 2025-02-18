@@ -30,10 +30,6 @@ export async function getFilteredProducts({
     resolvedMaxPrice = highestPrice.data || 0;
   }
   // Основной GROQ-запрос
-  // count(categories[_ref in $categories[]]) > 0
-  //categories[]->slug.current match $categories)
-  // count($categories) == 0 || count(categories[]->slug.current[slug in $categories][0]) > 0
-  // *[_type=="category" && slug.current in $categories]._id  match categories[]._ref
   const FILTERED_PRODUCTS_QUERY = defineQuery(`
     *[
       _type == "product" &&
@@ -45,19 +41,11 @@ export async function getFilteredProducts({
       price <= $maxPrice 
     ]
     | order(name asc)
-    {
-      _id,
-      name,
-      type,
-      price,
-      slug,
-      "image": image.asset->url,
-    }
   `);
 
   // Параметры для запроса
   const params: Record<string, unknown> = {
-    query: query.toLowerCase() || "", // undefined вместо пустой строки
+    query: query.toLowerCase() || "", 
     gender: gender || "",
     sizes: sizes.length > 0 ? sizes : null,
     categories: categories,

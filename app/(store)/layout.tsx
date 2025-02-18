@@ -38,7 +38,7 @@ export default function RootLayout({
     <ClerkProvider dynamic>
     <html lang="en">
       <body
-        className={`${velaSans.variable} ${uncage.variable}  antialiased flex flex-col min-h-[1000px]`}
+        className={`${velaSans.variable} ${uncage.variable}  antialiased flex flex-col min-h-screen`}
       >    
         <Header/>
         {children}

@@ -1,23 +1,30 @@
 "use client";
-import { useUser } from "@clerk/nextjs";
+
+import { ClerkLoaded, SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import Form from "next/form";
 import Link from "next/link";
 import { useState } from "react";
 import Logo from "./Logo";
 import Image from "next/image";
 import IconButton from "./IconButton";
+import useBasketStore from "@/store/basket";
+import { useRouter } from "next/navigation";
 const Header = () => {
-  const user = useUser();
-  console.log(user);
+  const router = useRouter();
+  const { isSignedIn } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
+  const BasketItemsCount = useBasketStore((state) =>
+    state.items.reduce((total, item) => total + item.quantity, 0)
+
+  );
   const navLinks = [
     {
       name: "Мужчинам",
-      href: "/",
+      href: "/catalog?gender=male",
     },
     {
       name: "Женщинам",
-      href: "/",
+      href: "/catalog?gender=female",
     },
     {
       name: "Новости",
@@ -47,20 +54,30 @@ const Header = () => {
                       </ul>
                     </nav>
               </div>
-              <div className='right-panel flex items-center justify-end gap-x-4 sm:gap-x-6 w-1/3 lg:w-auto'>
+              <div className='right-panel flex items-center justify-end gap-x-6 w-1/3 lg:w-auto'>
 
                       <Form className="hidden lg:flex relative" action="/catalog">
-                      
-                    {/* On submission, the input value will be appended to 
-                        the URL, e.g. /search?query=abc */}
                           <input type= "text" name="query" placeholder='Поиск'
                           className="search-field bg-content_main_white text-content_1 px-4 py-2 rounded-full" />
                           <Image src="/search-icon.svg" width="24" height="24" alt="" className="relative right-10 hover:brightness-75 transition "/>                   
                       </Form>
-                      <IconButton src="/basket-icon.svg" theme="light" >
-                      </IconButton>
-                      <IconButton src="/user-icon.svg" theme="light" >
-                      </IconButton>
+                      <div className="relative flex items-center">
+                      {BasketItemsCount > 0 &&
+                      <div className="absolute left-4 bottom-4 w-5 h-5 bg-accent_1 rounded-full z-0 flex items-center justify-center text-white text-sm">
+                        <span>{BasketItemsCount}</span>
+                        </div>
+                      }
+                      <IconButton src="/basket-icon.svg" theme="light" onClick={() => router.push('/basket')} />                     
+                      </div>
+                        <ClerkLoaded>                         
+                            {isSignedIn ? (
+                            <UserButton/>      
+                            ) : (
+                             <SignInButton mode="modal">
+                                <IconButton src="/user-icon.svg" theme="light" />        
+                             </SignInButton>
+                            )}                  
+                        </ClerkLoaded>
               </div>
                 
 
@@ -87,7 +104,7 @@ const Header = () => {
                             <Image src="/search-icon.svg" width="24" height="24" alt="" className="relative right-10 hover:brightness-75 transition "/>                   
                         </Form> 
 
-                    <ul className="nav-panel space-x-4 text-white underline-offset-4 ">
+                    <ul className="nav-panel space-x-4 text-white underline-offset-4">
                         {navLinks.map((navLink) => (                        
                           <Link key={navLink.name} href={navLink.href}>
                             <div className="flex align-center justify-between">

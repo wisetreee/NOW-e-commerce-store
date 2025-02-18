@@ -1,5 +1,4 @@
 import ProductCatalogSection from "@/app/components/ProductCatalogSection";
-import { Product } from "@/sanity.types";
 import { getFilteredProducts } from "@/sanity/lib/products/getFilteredProducts";
 
 export default async function CatalogPage({
