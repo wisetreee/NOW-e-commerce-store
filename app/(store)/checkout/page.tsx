@@ -11,6 +11,7 @@ import { imageUrl } from "@/sanity/lib/imageUrl";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import IconButton from "@/app/components/ui/IconButton";
 
 const schema = z.object({
   email: z.string().email("Некорректный email"),
@@ -97,11 +98,13 @@ export default function CheckoutPage() {
   if (!user || items.length === 0) return null;
 
   return (
-    <div className="container">
-      
-      <h2 className="mb-4 mt-8 font-medium text-lg">Контактные данные</h2>
-      <div className="sm:flex ">
-      <div className="sm:w-1/2 mb-16">
+    <div className="container pb-16">
+      <div className="my-4">
+      <IconButton src="/turn-back.svg" theme="light" onClick={() => router.back()}/>
+      </div>
+      <h2 className="mb-4 font-medium text-lg">Контактные данные</h2>
+      <div className="lg:flex ">
+      <div className="lg:w-1/2 mb-16">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1 text-content_3">Email</label>
@@ -206,11 +209,11 @@ export default function CheckoutPage() {
         />
       </form>
       </div>
-      <div className="sm:w-1/2 sm:pl-48">
+      <div className="lg:w-1/2 lg:pl-48">
         <div className="border-b mb-4">
-           <h2 className='font-semibold mb-2 text-lg'>Ваш заказ:</h2>
-           <p className='text-content_3 mb-2 text-lg'>Вещи ({getTotalQuantity()}): {getTotalPrice()} ₽ </p>
-           <p className='font-semibold mb-4 text-lg'>Итого: {getTotalPrice()} ₽ </p>
+           <h2 className='font-semibold mb-2 '>Ваш заказ:</h2>
+           <p className='text-content_3 mb-2 '>Вещи ({getTotalQuantity()}): {getTotalPrice()} ₽ </p>
+           <p className='font-semibold mb-4 '>Итого: {getTotalPrice()} ₽ </p>
         </div>
         {items.map((item) => (
           <div key={item.product._id} className="flex gap-4 mb-4 align-start text-sm">

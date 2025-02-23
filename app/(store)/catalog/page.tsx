@@ -36,7 +36,7 @@ export default async function CatalogPage({
 
   return (
     <main>
-      <div className="container">
+      <div className="container pb-16">
         <ProductCatalogSection products={products} categories={categoriesForFilter}/>
       </div>
     </main>

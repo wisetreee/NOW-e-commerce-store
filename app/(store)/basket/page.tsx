@@ -43,7 +43,7 @@ const BasketPage = () => {
     <div className='container'>
    <section className="mt-8 mb-16">    
         <IconButton src="/turn-back.svg" theme="light" onClick={() => router.back()}/>
-        <h1>Корзина</h1>
+        <h1 className='mb-4'>Корзина</h1>
         <div className='border-b mb-4'>
         {groupedItems.map((item, index) => 
             <div key={index} className='flex justify-between items-start mb-4'>  
@@ -52,8 +52,8 @@ const BasketPage = () => {
             </div>
         )}
         </div>
-        <h2 className='font-semibold  mb-2'>Ваш заказ:</h2>
-        <p className='text-content_3  mb-2'>Вещи ({getTotalQuantity()}): {getTotalPrice()} ₽ </p>
+        <h2 className='font-semibold mb-2'>Ваш заказ:</h2>
+        <p className='text-content_3 mb-2'>Вещи ({getTotalQuantity()}): {getTotalPrice()} ₽ </p>
         <p className='font-semibold mb-4'>Итого: {getTotalPrice()} ₽ </p>
         {isSignedIn ? (
           <Button text='Перейти к оплате' onClick={() => onCheckout()}/>
