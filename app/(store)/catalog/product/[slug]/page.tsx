@@ -1,4 +1,4 @@
-import ProductPageSection from "@/app/components/ProductPageSection";
+import ProductPageSection from "@/app/components/productPage/ProductPageSection";
 import { getProductBySlug } from "@/sanity/lib/products/getProductBySlug";
 import { notFound } from "next/navigation";
 

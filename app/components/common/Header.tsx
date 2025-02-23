@@ -4,9 +4,9 @@ import { ClerkLoaded, SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import Form from "next/form";
 import Link from "next/link";
 import { useState } from "react";
-import Logo from "./Logo";
+import Logo from "../ui/Logo";
 import Image from "next/image";
-import IconButton from "./IconButton";
+import IconButton from "../ui/IconButton";
 import useBasketStore from "@/store/basket";
 import { useRouter } from "next/navigation";
 const Header = () => {

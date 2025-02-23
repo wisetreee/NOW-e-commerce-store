@@ -17,8 +17,8 @@ const IconButton: React.FC <IconButtonProps> = ({ src, theme, onClick, width, he
             className={
             theme == "dark" ?
             // TODO: сделать так, чтобы при выборе темной темы выбирались разные иконки
-                    "hover:brightness-75 transition " : 
-                    "hover:brightness-75 transition "}
+                    "hover:brightness-75 transition aspect-square" : 
+                    "hover:brightness-75 transition aspect-square"}
             src={src} 
             width={width? width : 24} 
             height={height ? height : 24} 

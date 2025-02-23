@@ -1,5 +1,5 @@
 import { getNewProducts } from "@/sanity/lib/products/getNewProducts";
-import ProductRow from "../components/ProductRow";
+import ProductRow from "../common/ProductRow";
 
 const NewProductsSection = async () => {
     const products = await getNewProducts();

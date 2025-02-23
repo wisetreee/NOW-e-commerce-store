@@ -695,7 +695,7 @@
     }
   },
   {
-    "name": "orderType",
+    "name": "order",
     "type": "document",
     "attributes": {
       "_id": {
@@ -708,7 +708,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "orderType"
+          "value": "order"
         }
       },
       "_createdAt": {
@@ -743,7 +743,28 @@
         },
         "optional": true
       },
-      "customerName": {
+      "firstName": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "lastName": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "phoneNumber": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "address": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -828,13 +849,6 @@
         "type": "objectAttribute",
         "value": {
           "type": "number"
-        },
-        "optional": true
-      },
-      "currency": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
         },
         "optional": true
       },

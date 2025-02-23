@@ -2,7 +2,7 @@
 import { getHero } from "@/sanity/lib/hero/getHero";
 import { imageUrl } from "@/sanity/lib/imageUrl";
 import Image from "next/image";
-import Button from "./Button";
+import Button from "../ui/Button";
 import Link from "next/link";
 
 export default async function HeroSection() {

@@ -3,7 +3,7 @@ import { imageUrl } from "@/sanity/lib/imageUrl";
 import useBasketStore, { BasketItem } from "@/store/basket";
 import Image from "next/image";
 import Link from "next/link";
-import IconButton from "./IconButton";
+import IconButton from "../ui/IconButton";
 import toast, { Toaster } from "react-hot-toast";
 
 interface BasketProductCardProps {

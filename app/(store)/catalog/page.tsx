@@ -1,4 +1,5 @@
-import ProductCatalogSection from "@/app/components/ProductCatalogSection";
+import ProductCatalogSection from "@/app/components/catalogPage/ProductCatalogSection";
+import { GetAllCategories } from "@/sanity/lib/categories/getAllCategories";
 import { getFilteredProducts } from "@/sanity/lib/products/getFilteredProducts";
 
 export default async function CatalogPage({
@@ -13,8 +14,6 @@ export default async function CatalogPage({
     categories = [],
     minPrice = 0,
     maxPrice = 0,
-    page = 1,
-    limit = 10,
   } = await searchParams;
 
   const categoriesArray =
@@ -31,15 +30,14 @@ export default async function CatalogPage({
     categories: categoriesArray,
     minPrice: Number(minPrice),
     maxPrice: Number(maxPrice),
-    page: Number(page),
-    limit: Number(limit),
   });
 
+  const categoriesForFilter = await GetAllCategories();
 
   return (
     <main>
       <div className="container">
-        <ProductCatalogSection products={products}/>
+        <ProductCatalogSection products={products} categories={categoriesForFilter}/>
       </div>
     </main>
   );

@@ -1,5 +1,5 @@
 import { GetPopularCategories } from "@/sanity/lib/categories/getPopularCategories";
-import CategoriesGrid from "./CategoriesGrid";
+import CategoriesGrid from "../common/CategoriesGrid";
 
 const PopularCategoriesSection = async () => {
     const categories = await GetPopularCategories();

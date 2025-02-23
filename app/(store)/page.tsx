@@ -1,7 +1,7 @@
-import AboutSection from "../components/AboutSection";
-import HeroSection from "../components/HeroSection";
-import NewProductsSection from "../components/NewProductsSection";
-import PopularCategoriesSection from "../components/PopularCategoriesSection";
+import AboutSection from "../components/mainPage/AboutSection";
+import HeroSection from "../components/mainPage/HeroSection";
+import NewProductsSection from "../components/mainPage/NewProductsSection";
+import PopularCategoriesSection from "../components/mainPage/PopularCategoriesSection";
 
 export default function Home() {
 

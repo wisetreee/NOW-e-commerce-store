@@ -3,8 +3,8 @@ import localFont from "next/font/local";
 import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { SanityLive } from "@/sanity/lib/live";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/common/Header";
+import Footer from "../components/common/Footer";
 
 const velaSans = localFont({
   src: [

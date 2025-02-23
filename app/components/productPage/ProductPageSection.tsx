@@ -2,14 +2,14 @@
 
 import { Product } from '@/sanity.types';
 import React, { useEffect, useState } from 'react'
-import IconButton from './IconButton';
+import IconButton from '../ui/IconButton';
 import { notFound, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { imageUrl } from '@/sanity/lib/imageUrl';
-import SizeGrid from './SizesGrid';
+import SizeGrid from '../common/SizesGrid';
 import { PortableText } from 'next-sanity';
-import ImageSlider from './ImageSlider';
-import Button from './Button';
+import ImageSlider from '../ui/ImageSlider';
+import Button from '../ui/Button';
 import useBasketStore, { BasketItem } from '@/store/basket';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -48,7 +48,7 @@ const ProductPageSection: React.FC<ProductPageSectionProps> = ({ product }) => {
     setSelectedQuantity (selectedQuantity+1);
   }
   const decreaseQuantity = (selectedQuantity: number) => {
-    if (selectedQuantity >1 ) {
+    if (selectedQuantity > 1 ) {
       setSelectedQuantity (selectedQuantity-1);
     }
     else {

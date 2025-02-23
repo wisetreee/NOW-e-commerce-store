@@ -3,11 +3,11 @@ import { sanityFetch } from "../live";
 
 export const GetPopularCategories = async() => {
 
-    const CATEGORIES_QUERY = defineQuery(`*[ _type == "category" ][0..3] `);
+    const POPULAR_CATEGORIES_QUERY = defineQuery(`*[ _type == "category" ][0..3] `);
         
         try {
             const categories = await sanityFetch({
-                query: CATEGORIES_QUERY,
+                query: POPULAR_CATEGORIES_QUERY,
             });
             return categories.data || undefined;
             } catch (error) {

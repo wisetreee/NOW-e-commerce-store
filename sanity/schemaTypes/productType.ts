@@ -23,6 +23,7 @@ export const productType = defineType ({
             name: "slug",
             title: "slug",
             type: "slug",
+            validation: (rule) => rule.required(),
             options: {
                 source: "name",
                 maxLength: 100,
@@ -32,6 +33,7 @@ export const productType = defineType ({
             name: "image",
             title: "Основное изображение товара",
             type: "image",
+            validation: (rule) => rule.required(),
             options: {
                 hotspot: true,
             }
@@ -78,9 +80,10 @@ export const productType = defineType ({
         defineField ({
             name: "sizes",
             title: "Размеры",
+            validation: (rule) => rule.required(),
             type: 'array', of: [{ type: 'object', fields: [
-                { name: 'size', title: 'Размер', type: 'number' },
-                { name: 'quantity', title: 'Количество', type: 'number' }
+                { name: 'size', title: 'Размер', type: 'number', validation: (rule) => rule.required(), },
+                { name: 'quantity', title: 'Количество', type: 'number', validation: (rule) => rule.required(), }
               ] }]
         }),
 

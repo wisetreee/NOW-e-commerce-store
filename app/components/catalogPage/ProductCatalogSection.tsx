@@ -1,16 +1,17 @@
 "use client";
 
-import { Product } from "@/sanity.types";
-import ProductGrid from "./ProductGrid";
+import { Category, Product } from "@/sanity.types";
+import ProductGrid from "../common/ProductGrid";
 import FilterPanel from "./FilterPanel";
 import { useState } from "react";
 import { useRouter } from 'next/navigation' 
-import IconButton from "./IconButton";
+import IconButton from "../ui/IconButton";
 
 interface ProductCatalogSectionProps {
     products: Product[];
+    categories: Category[];
   }
-  const ProductCatalogSection: React.FC<ProductCatalogSectionProps> = ({ products }) => {
+  const ProductCatalogSection: React.FC<ProductCatalogSectionProps> = ({ products, categories }) => {
     const router = useRouter();
     const [panelOpen, setPanelOpen]  = useState(false);
     return (
@@ -25,7 +26,7 @@ interface ProductCatalogSectionProps {
                      </button>
                   </div>
                 <ProductGrid products={products}/>
-                <FilterPanel panelOpen={panelOpen} setPanelOpen={setPanelOpen}/>
+                <FilterPanel panelOpen={panelOpen} categories={categories} setPanelOpen={setPanelOpen}/>
             </section>
                 
         
