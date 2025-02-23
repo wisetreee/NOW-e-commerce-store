@@ -8,7 +8,7 @@ export default function CheckoutSuccessPage() {
   const router = useRouter();
 
   return (
-    <div className="container text-center flex flex-col items-center py-16">
+    <div className="container text-center flex flex-col items-center pt-16 pb-32">
       <Image
       src="/gift-box.png"
       width = "600"
@@ -21,7 +21,7 @@ export default function CheckoutSuccessPage() {
       </p>
       <div className="flex justify-center gap-4">
         <Button
-          text="Перейти на главную"
+          text="На главную"
           onClick={() => router.push("/")}
         />
         <Button

@@ -75,14 +75,20 @@ export default function CheckoutPage() {
         }),
       });
 
-      if (!response.ok) throw new Error("Ошибка оплаты");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Ошибка оплаты");
+      }
 
       router.push("/checkout/success");
       clearBasket();
       
     } catch (error) {
       console.error(error);
-      alert("Ошибка при оформлении заказа");
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : "Неизвестная ошибка";
+      router.push(`/checkout/error?message=${encodeURIComponent(errorMessage)}`);
     } finally {
       setIsLoading(false);
     }

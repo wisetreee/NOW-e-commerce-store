@@ -2,6 +2,7 @@ import { backendClient } from "@/sanity/lib/backendClient";
 import { v4 as uuidv4 } from 'uuid';
 import { NextResponse } from 'next/server';
 import { BasketItem } from "@/store/basket";
+import { sendEmail } from "@/store/email";
 
 export async function POST(request: Request) {
   try {
@@ -21,7 +22,7 @@ export async function POST(request: Request) {
 
     if (stockCheck.some(valid => !valid)) {
       return NextResponse.json(
-        { error: "Некоторые товары закончились" },
+        { error: "Некоторые товары закончились." },
         { status: 400 }
       );
     }
@@ -69,6 +70,17 @@ export async function POST(request: Request) {
           .commit();
       })
     );
+
+    // 4. Отправка письма
+    await sendEmail({
+      to: user.email,
+      subject: `Заказ #${createdOrder.orderNumber} оформлен`,
+      html: `
+        <h1>Спасибо за заказ!</h1>
+        <p>Номер вашего заказа: ${createdOrder.orderNumber}</p>
+        <p>Сумма: ${totalPrice} ₽</p>
+      `
+    });
 
     return NextResponse.json(
       { success: true, orderId: createdOrder._id },
