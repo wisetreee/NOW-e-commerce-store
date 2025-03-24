@@ -1,0 +1,16 @@
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="&#208;&#157;&#208;&#176;&#208;&#177;&#208;&#190;&#209;&#128; &#208;&#186;&#208;&#190;&#208;&#188;&#208;&#191;&#208;&#190;&#208;&#189;&#208;&#181;&#208;&#189;&#209;&#130;&#208;&#190;&#208;&#178; 7" clip-path="url(#clip0_0_331)">
+<mask id="mask0_0_331" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36">
+<path id="&#208;&#157;&#208;&#176;&#208;&#177;&#208;&#190;&#209;&#128; &#208;&#186;&#208;&#190;&#208;&#188;&#208;&#191;&#208;&#190;&#208;&#189;&#208;&#181;&#208;&#189;&#209;&#130;&#208;&#190;&#208;&#178; 7_2" fill-rule="evenodd" clip-rule="evenodd" d="M0 0H36V36H0V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_0_331)">
+<path id="Icon" d="M4.5 25.5H24.75C28.4779 25.5 31.5 22.4779 31.5 18.75C31.5 15.0221 28.4779 12 24.75 12H4.5" stroke="#1C1D24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Icon_2" d="M9 7.5L4.5 12L9 16.5" stroke="#1C1D24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_331">
+<rect width="36" height="36" fill="white"/>
+</clipPath>
+</defs>
+</svg>

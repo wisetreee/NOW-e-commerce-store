@@ -1,15 +1,17 @@
-import { getNewProducts } from "@/sanity/lib/products/getNewProducts";
-import ProductCard from "../components/ProductCard";
+import AboutSection from "../components/mainPage/AboutSection";
+import HeroSection from "../components/mainPage/HeroSection";
+import NewProductsSection from "../components/mainPage/NewProductsSection";
+import PopularCategoriesSection from "../components/mainPage/PopularCategoriesSection";
 
-export default async function Home() {
-  const products = await getNewProducts();
-  
+export default function Home() {
+
   return (
-    <div>
-     <h1>Hello world!</h1>
-     {products.map ((product, index) => (
-      <ProductCard key = {product._id} product = {product}/>
-     ))}
-    </div>
+    <main>
+      <HeroSection/> 
+      <NewProductsSection/>  
+      <PopularCategoriesSection/>
+      <AboutSection/>
+    </main>
+
   );
 }

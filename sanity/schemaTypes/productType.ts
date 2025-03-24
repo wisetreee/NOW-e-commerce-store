@@ -14,9 +14,16 @@ export const productType = defineType ({
             validation: (rule) => rule.required(),
         }),
         defineField ({
+            name: "type",
+            title: "Тип товара",
+            type: "string",
+            validation: (rule) => rule.required(),
+        }),
+        defineField ({
             name: "slug",
             title: "slug",
             type: "slug",
+            validation: (rule) => rule.required(),
             options: {
                 source: "name",
                 maxLength: 100,
@@ -24,12 +31,33 @@ export const productType = defineType ({
         }),
         defineField ({
             name: "image",
-            title: "Изображение товара",
+            title: "Основное изображение товара",
             type: "image",
+            validation: (rule) => rule.required(),
             options: {
                 hotspot: true,
             }
         }),
+
+        defineField({
+            name: "gallery",
+            title: "Галерея изображений",
+            type: "array",
+            of: [
+              {
+                type: "image",
+                options: {
+                  hotspot: true, // Для кадрирования изображений
+                },
+              },
+            ],
+            validation: (Rule) =>
+              Rule.required()
+                .min(4)
+                .max(4)
+                .error("Галерея должна содержать ровно 4 изображения"),
+          }),
+          
         defineField ({
             name: "description",
             title: "Описание товара",
@@ -41,23 +69,24 @@ export const productType = defineType ({
             type: "number",
             validation: (rule) => rule.required().min(0),
         }),
-        defineField({
-            name: 'genderOptions',
-            title: 'Доступные размеры по полу',
-            type: 'array',
-            of: [
-              {
-                type: 'object',
-                fields: [
-                  { name: 'gender', title: 'Пол', type: 'string', options: { list: ['male', 'female'] } },
-                  { name: 'sizes', title: 'Размеры', type: 'array', of: [{ type: 'object', fields: [
-                    { name: 'size', title: 'Размер', type: 'number' },
-                    { name: 'quantity', title: 'Количество', type: 'number' }
-                  ] }] },
-                ],
-              }
-            ],
-          }),
+
+        defineField ({
+            name: "gender",
+            title: "Пол",
+            type: "string",
+            options: { list: ['male', 'female'] },
+            validation: (rule) => rule.required(),
+        }),
+        defineField ({
+            name: "sizes",
+            title: "Размеры",
+            validation: (rule) => rule.required(),
+            type: 'array', of: [{ type: 'object', fields: [
+                { name: 'size', title: 'Размер', type: 'number', validation: (rule) => rule.required(), },
+                { name: 'quantity', title: 'Количество', type: 'number', validation: (rule) => rule.required(), }
+              ] }]
+        }),
+
         defineField ({
             name: "categories",
             title: "Категории товара",

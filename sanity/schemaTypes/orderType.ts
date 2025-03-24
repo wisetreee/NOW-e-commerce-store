@@ -1,8 +1,7 @@
 import { BasketIcon } from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
-import { preview } from 'vite';
 export  const orderType = defineType({ 
-    name: 'orderType',
+    name: 'order',
     title: 'Заказы',
     type: 'document',
     icon: BasketIcon,
@@ -20,8 +19,26 @@ export  const orderType = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField ({
-            name: 'customerName',
+            name: 'firstName',
             title: 'Имя покупателя',
+            type: 'string',
+            validation: (rule) => rule.required(),
+        }),
+        defineField ({
+            name: 'lastName',
+            title: 'Фамилия покупателя',
+            type: 'string',
+            validation: (rule) => rule.required(),
+        }),
+        defineField ({
+            name: 'phoneNumber',
+            title: 'Номер телефона покупателя',
+            type: 'string',
+            validation: (rule) => rule.required(),
+        }),
+        defineField ({
+            name: 'address',
+            title: 'Адрес доставки',
             type: 'string',
             validation: (rule) => rule.required(),
         }),
@@ -62,7 +79,6 @@ export  const orderType = defineType({
                             quantity: "quantity",
                             image: "product.image",
                             price: "product.price",
-                            currency: "product.currency",
                         },
                         prepare(select) {
                          return {
@@ -81,12 +97,7 @@ export  const orderType = defineType({
             type: 'number',
             validation: (rule) => rule.required().min(0),
         }),
-        defineField ({
-            name: 'currency',
-            title: 'Валюта',
-            type: 'string',
-            validation: (rule) => rule.required(),
-        }),
+
         defineField ({
             name: 'status',
             title: 'Статус заказа',
@@ -111,7 +122,8 @@ export  const orderType = defineType({
     ],
         preview: {
             select:{
-                name: "customerName",
+                firstName: "firstName",
+                lastName: "lastName",
                 amount: "totalPrice",
                 currency:"currency",
                 orderId: "orderNumber",
@@ -120,8 +132,8 @@ export  const orderType = defineType({
             prepare(select) {
                 const orderIdSnippet= `${select.orderId.slice(0,5)}...${select.orderId.slice(-5)}`;
                 return{
-                  title: `${select.name} (${orderIdSnippet})`,
-                  subtitle: `${select.amount} ${select.currency}, ${select.email}`,
+                  title: `${select.firstName} ${select.lastName} (${orderIdSnippet})`,
+                  subtitle: `${select.amount} ₽, ${select.email}`,
                   media: BasketIcon,
                     };
                  },
