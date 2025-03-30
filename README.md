@@ -23,8 +23,8 @@ NOW - вымышленный интернет-магазин обуви.
 - Tailwind CSS
 - Sanity CMS
 - Nodemailer
-- zod
-- scadcn/ui
+- Zod
+- Shadcn/ui
 - Zustand
 - Clerk
 - React Hot Toast
