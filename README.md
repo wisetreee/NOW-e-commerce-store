@@ -28,6 +28,7 @@ NOW - вымышленный интернет-магазин обуви.
 - Zustand
 - Clerk
 - React Hot Toast
+- React Hook Form
 
   
 # Скриншоты (версия для компьютеров)
